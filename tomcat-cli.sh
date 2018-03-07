@@ -29,6 +29,9 @@ Commands:
   sessions    Session Statistics. Compulsory argument of webapp path, e.g. /manager
   expire      Expire Sessions. Compulsory argument of webapp path. Optional secondary argument number of minutes to expire sessions that are idle for longer than num minutes
   threaddump  Thread Dump
+  reload      Reload An Existing Application, e.g. /examples
+  start       Start an Existing Application
+  stop        Stop an Existing Application
 HELP
 }
 
@@ -99,6 +102,18 @@ while (( $# > 0 )); do
       ;;
     "threaddump")
       runcmd threaddump
+      ;;
+    "reload")
+      runcmd reload "path=$2"
+      shift
+      ;;
+    "start")
+      runcmd start "path=$2"
+      shift
+      ;;
+    "stop")
+      runcmd stop "path=$2"
+      shift
       ;;
     *)
       echo Unknown command $1
