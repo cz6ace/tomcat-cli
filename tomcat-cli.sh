@@ -19,6 +19,7 @@ Executes command in tomcat instance.
 Options:
   --port port       port on which the tomcat manager is running
   --host hostname   hostname of the tomcat instance
+  --protocol protocol protocol - default http
   -h --help         show this help
 
 Commands:
@@ -66,6 +67,10 @@ readdefaults
 
 while (( $# > 0 )); do
   case $1 in
+    "--protocol")
+      protocol=$2
+      shift
+      ;;
     "--port")
       port=$2
       shift
