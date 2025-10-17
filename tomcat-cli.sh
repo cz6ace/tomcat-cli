@@ -17,6 +17,7 @@ Usage: $0 [OPTION]... command [ARG]
 Executes command in tomcat instance.
 
 Options:
+  --config filename optional configfile with connection/password
   --port port       port on which the tomcat manager is running
   --host hostname   hostname of the tomcat instance
   --protocol protocol protocol - default http
@@ -67,6 +68,16 @@ readdefaults
 
 while (( $# > 0 )); do
   case $1 in
+    "--config")
+      config=$2
+      if [ -e "$config" ]; then
+        source "$config"
+      else
+        echo Config $config file not found
+        exit 1
+      fi
+      shift
+      ;;
     "--protocol")
       protocol=$2
       shift
